@@ -1,7 +1,7 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, BadRequestException } from '@nestjs/common';
 import { HeroesService } from './heroes.service';
-import { CreateHeroDto } from './dto/create-hero.dto';
-import { UpdateHeroDto } from './dto/update-hero.dto';
+import { CreateHeroDto } from '../dto/create-hero.dto';
+import { UpdateHeroDto } from '../dto/update-hero.dto';
 
 @Controller('heroes')
 export class HeroesController {
@@ -21,6 +21,22 @@ export class HeroesController {
   findOne(@Param('id') id: string) {
     return this.heroesService.findOne(+id);
   }
+
+  @Get('search')
+  async search(
+    @Query('query') query: string,
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 10,
+    @Query('sortField') sortField: string = 'name',
+    @Query('sortOrder') sortOrder: 'ASC' | 'DESC' = 'ASC',
+  ) {
+    if (!query) {
+      throw new BadRequestException('Query parameter is required');
+    }
+
+    return this.heroesService.search(query, page, limit, sortField, sortOrder);
+  }
+
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateHeroDto: UpdateHeroDto) {

@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { HeroesModule } from './heroes/heroes.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { HeroesController } from './heroes/heroes.controller';
-import { HeroesService } from './heroes/heroes.service';
+// import { HeroesService } from './heroes.service';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
@@ -21,6 +21,6 @@ import { ConfigModule } from '@nestjs/config';
     HeroesModule
   ],
   controllers: [HeroesController],
-  providers: [HeroesService],
+
 })
 export class AppModule { }
