@@ -1,6 +1,6 @@
 # Heroes API
 
-Este proyecto es una API para gestionar héroes utilizando NestJS y TypeORM. La API permite crear, actualizar, buscar y eliminar héroes. Además, proporciona una documentación interactiva utilizando Swagger.
+Este proyecto es una API para gestionar héroes utilizando NestJS y TypeORM. La API permite crear, actualizar, buscar y eliminar héroes. Además, proporciona una documentación interactiva utilizando Swagger, adjunto se encontrará la colección de Postman con el endpoint pedido.
 
 ## Requisitos
 
