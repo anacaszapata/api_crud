@@ -1,12 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateHeroDto } from '../dto/create-hero.dto';
 import { UpdateHeroDto } from '../dto/update-hero.dto';
-import { Hero } from '../entities/hero.entity';
+import { Hero } from './entities/hero.entity';
 import { Repository, ILike } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
+
 @Injectable()
-export class HeroesService {
+export  class HeroesService {
 
     constructor(
         @InjectRepository(Hero)
