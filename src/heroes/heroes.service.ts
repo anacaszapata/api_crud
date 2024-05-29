@@ -1,14 +1,18 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateHeroDto } from './dto/create-hero.dto';
-import { UpdateHeroDto } from './dto/update-hero.dto';
+import { CreateHeroDto } from '../dto/create-hero.dto';
+import { UpdateHeroDto } from '../dto/update-hero.dto';
 import { Hero } from './entities/hero.entity';
-import { Repository } from 'typeorm';
+import { Repository, ILike } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
-@Injectable()
-export class HeroesService {
 
-    constructor(@InjectRepository(Hero) private readonly heroRepository: Repository<Hero>) { }
+@Injectable()
+export  class HeroesService {
+
+    constructor(
+        @InjectRepository(Hero)
+        private readonly heroRepository: Repository<Hero>,
+    ) {}
 
     async create(createHeroDto: CreateHeroDto) {
         const hero = this.heroRepository.create(createHeroDto);
@@ -27,6 +31,35 @@ export class HeroesService {
         return hero
 
     }
+
+    async search(
+        query: string,
+        page: number,
+        limit: number,
+        sortField: string,
+        sortOrder: 'ASC' | 'DESC',
+      ) {
+        const [results, total] = await this.heroRepository.findAndCount({
+          where: [
+            { name: ILike(`%${query}%`) },
+            { power: ILike(`%${query}%`) },
+            { comicHouse: ILike(`%${query}%`) },
+          ],
+          order: { [sortField]: sortOrder },
+          skip: (page - 1) * limit,
+          take: limit,
+        });
+    
+        const totalPages = Math.ceil(total / limit);
+    
+        return {
+          data: results,
+          currentPage: page,
+          totalPages,
+          totalItems: total,
+        };
+      }
+    
 
     async update(id: number, { name }: UpdateHeroDto) {
         const hero = await this.heroRepository.preload({

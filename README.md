@@ -1,73 +1,57 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Heroes API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Este proyecto es una API para gestionar héroes utilizando NestJS y TypeORM. La API permite crear, actualizar, buscar y eliminar héroes. Además, proporciona una documentación interactiva utilizando Swagger.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Requisitos
 
-## Description
+- Node.js (versión 12 o superior)
+- npm (versión 6 o superior)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Instalación
 
-## Installation
+1. Clona el repositorio:
+    ```bash
+    git clone <URL_DEL_REPOSITORIO>
+    cd <NOMBRE_DEL_REPOSITORIO>
+    ```
 
-```bash
-$ npm install
-```
+2. Instala las dependencias:
+    ```bash
+    npm install
+    ```
 
-## Running the app
+3. Configura las variables de entorno:
 
-```bash
-# development
-$ npm run start
+    Renombra el archivo `.env.example` a `.env` y asegúrate de que contenga las siguientes variables:
+    ```
+    PORT=3000
+    DB_NAME=verceldb
+    DB_USER=default
+    DB_PASS=sIf4rSVqjld9
+    DB_HOST=ep-mute-smoke-a4deemv5-pooler.us-east-1.aws.neon.tech
+    ```
 
-# watch mode
-$ npm run start:dev
+4. Inicia el servidor de desarrollo:
+    ```bash
+    npm run start:dev
+    ```
 
-# production mode
-$ npm run start:prod
-```
+## Uso
 
-## Test
+Una vez que el servidor esté en funcionamiento, puedes acceder a la documentación Swagger para explorar y probar los endpoints disponibles. La documentación Swagger estará disponible en:
 
-```bash
-# unit tests
-$ npm run test
+[http://localhost:3000/api](http://localhost:3000/api)
 
-# e2e tests
-$ npm run test:e2e
+## Endpoints
 
-# test coverage
-$ npm run test:cov
-```
+### Crear un héroe
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+- **URL:** `/heroes`
+- **Método:** `POST`
+- **Cuerpo:**
+  ```json
+  {
+    "name": "SuperMan",
+    "power": "Strong, laser vision",
+    "comicHouse": "DC"
+  }
